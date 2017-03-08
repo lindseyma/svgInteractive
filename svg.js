@@ -6,13 +6,22 @@ var clrScreen = function() {
     while(svg.firstChild) {
 	svg.removeChild(svg.firstChild);
     }
-    console.log("clear");
 }
 
-var change = function(e) {
-    console.log("change");
-    circle.setAttribute("color", "red");
+var changeColor = function(e) {
+    this.setAttribute("fill", "red");
     e.stopPropagation();
+}
+
+var remove = function() {
+    if ((this.getAttribute("fill") == "red") && (this.getAttribute("state") == 0)) {
+	this.setAttribute("state", 1);
+    }
+    else if (this.getAttribute("state") == 2) {
+	svg.removeChild(this);
+	draw2(Math.random() * svg.getAttribute("width"), Math.random() * svg.getAttribute("height"));
+    }
+    this.setAttribute("state", 2);
 }
 
 function circle(x,y) {
@@ -20,12 +29,19 @@ function circle(x,y) {
     circle.setAttribute("cx",x);
     circle.setAttribute("cy",y);
     circle.setAttribute("r",20);
-    circle.addEventListener("click",change);
+    circle.setAttribute("state",0);
+    circle.addEventListener("click",changeColor);
+    circle.addEventListener("click",remove);
     return circle;
 }
 
 var draw = function(e) {
     var c = circle(e.offsetX, e.offsetY);
+    svg.appendChild(c);
+}
+
+var draw2 = function(x,y) {
+    var c = circle(x,y);
     svg.appendChild(c);
 }
 
