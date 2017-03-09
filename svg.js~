@@ -1,4 +1,5 @@
 var svg = document.getElementById("vimage");
+var move = document.getElementById("move");
 var clear = document.getElementById("clear");
 
 var clrScreen = function() {
@@ -28,8 +29,6 @@ function circle(x,y) {
     circle.setAttribute("cx",x);
     circle.setAttribute("cy",y);
     circle.setAttribute("r",20);
-    circle.setAttribute("velX",0);
-    circle.setAttribute("velY",0);
     circle.setAttribute("state",0);
     circle.addEventListener("click",changeColor);
     circle.addEventListener("click",remove);
@@ -45,33 +44,6 @@ var draw2 = function(x,y) {
     var c = circle(x,y);
     svg.appendChild(c);
 }
-
-var move = document.getElementById("move");
-move.addEventListener('click', mover, true){
-	window.cancelAnimationFrame(rid);
-	var velX=1;
-	var velY=1;
-	var maxX=500-40;
-	var maxY=500-40;
-
-	var moveAll=function(e){
-		while(svg.lastChild){
-			svg.removeChild(svg.lastChild);
-		}
-		if(this.cx>maxX||this.cx<=0){
-			this.setAttribute("velX", this.velX*-1);
-		}
-		if(this.cy>=maxY||this.cy<=-20){
-			this.setAttribute("velY", this.velY*-1);
-		}
-		svg.appendChild(this);
-		rid=window.requestAnimationFrame(moveAll);
-		e.stopPropagation();
-	}
-	moveAll();
-});
-	
-	
 
 clear.addEventListener("click", clrScreen);
 svg.addEventListener("click", draw);
