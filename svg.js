@@ -56,8 +56,8 @@ move.addEventListener('click', function(){
 	window.cancelAnimationFrame(rid);
 	//var velX=1;
 	//var velY=1;
-	var maxX=500-40;
-	var maxY=500-40;
+	var maxX=500-20;
+	var maxY=500-20;
 
 	var moveAll=function(e){
 		for(var i=0; i<circles.length; i++){
@@ -68,19 +68,21 @@ move.addEventListener('click', function(){
 		    var cy = parseInt(curr.getAttribute("cy"));
 		    //console.log(cx);
 		    //console.log(maxX);
-		    if(cx>maxX||cx<=0){
+		    if(cx>maxX||cx<=20){
 			//velX=parseInt(curr.getAttribute("velX"))*-1;
 			curr.setAttribute("velX", velX*-1);
 			console.log(velX);
 		    };
-		    if(cy>=maxY||cy<=-20){
+		    if(cy>=maxY||cy<=20){
 			//curr.setAttribute("velY", parseInt(curr.getAttribute("velY"))*-1);
 			curr.setAttribute("velY", velY*-1);
 		    };
 		    console.log(velX);
-
-		    curr.setAttribute("cx",cx+velX);
-		    curr.setAttribute("cy",cy+velY);
+		    cx+=parseInt(curr.getAttribute("velX"));
+		    cy+=parseInt(curr.getAttribute("velY"));
+				 
+		    curr.setAttribute("cx",cx);
+		    curr.setAttribute("cy",cy);
 		};//forloop
 		rid=window.requestAnimationFrame(moveAll);
 	};
