@@ -1,5 +1,6 @@
 var svg = document.getElementById("vimage");
 var clear = document.getElementById("clear");
+var rid;
 
 var clrScreen = function() {
     while(svg.firstChild) {
@@ -61,13 +62,13 @@ move.addEventListener('click', function(){
 	var moveAll=function(e){
 		for(var i=0; i<circles.length; i++){
 		    var curr = circles[i];
-		    var cx = curr.getAttribute("cx");
-		    var cy = curr.getAttribute("cy");
+		    var cx = parseInt(curr.getAttribute("cx"));
+		    var cy = parseInt(curr.getAttribute("cy"));
 		    if(cx>maxX||cx<=0){
-			curr.setAttribute("velX", curr.getAttribute(velX)*-1);
+			curr.setAttribute("velX", parseInt(curr.getAttribute(velX)*-1));
 		    };
 		    if(cy>=maxY||cy<=-20){
-			curr.setAttribute("velY", curr.getAttribute(velY)*-1);
+			curr.setAttribute("velY", parseInt(curr.getAttribute(velY)*-1));
 		    };
 		    curr.setAttribute("cx",cx+velX);
 		    curr.setAttribute("cy",cy+velY);
