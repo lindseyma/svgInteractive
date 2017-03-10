@@ -49,7 +49,9 @@ var draw2 = function(x,y) {
 
 //reminderthis is wrong;clear circles 
 var move = document.getElementById("move");
-move.addEventListener('click', mover, true){
+
+move.addEventListener('click', function(){
+	var circles = document.getElementsByTagName('circle');
 	window.cancelAnimationFrame(rid);
 	var velX=1;
 	var velY=1;
@@ -57,21 +59,23 @@ move.addEventListener('click', mover, true){
 	var maxY=500-40;
 
 	var moveAll=function(e){
-		while(svg.lastChild){
-			svg.removeChild(svg.lastChild);
-		}
-		if(this.cx>maxX||this.cx<=0){
-			this.setAttribute("velX", this.velX*-1);
-		}
-		if(this.cy>=maxY||this.cy<=-20){
-			this.setAttribute("velY", this.velY*-1);
-		}
-		svg.appendChild(this);
+		for(var i=0; i<circles.length; i++){
+		    var curr = circles[i];
+		    var cx = curr.getAttribute("cx");
+		    var cy = curr.getAttribute("cy");
+		    if(cx>maxX||cx<=0){
+			curr.setAttribute("velX", curr.getAttribute(velX)*-1);
+		    };
+		    if(cy>=maxY||cy<=-20){
+			curr.setAttribute("velY", curr.getAttribute(velY)*-1);
+		    };
+		    curr.setAttribute("cx",cx+velX);
+		    curr.setAttribute("cy",cy+velY);
+		};//forloop
 		rid=window.requestAnimationFrame(moveAll);
-		e.stopPropagation();
-	}
+	};
 	moveAll();
-});
+    };
 	
 	
 

@@ -46,6 +46,8 @@ var draw2 = function(x,y) {
     svg.appendChild(c);
 }
 
+
+//reminderthis is wrong;clear circles 
 var move = document.getElementById("move");
 move.addEventListener('click', mover, true){
 	window.cancelAnimationFrame(rid);
