@@ -75,7 +75,7 @@ move.addEventListener('click', function(){
 		rid=window.requestAnimationFrame(moveAll);
 	};
 	moveAll();
-    };
+    });
 	
 	
 
