@@ -77,12 +77,9 @@ move.addEventListener('click', function(){
 			//curr.setAttribute("velY", parseInt(curr.getAttribute("velY"))*-1);
 			curr.setAttribute("velY", velY*-1);
 		    };
-		    console.log(velX);
-		    cx+=parseInt(curr.getAttribute("velX"));
-		    cy+=parseInt(curr.getAttribute("velY"));
-				 
-		    curr.setAttribute("cx",cx);
-		    curr.setAttribute("cy",cy);
+		    console.log(velX);	 
+		    curr.setAttribute("cx",cx+=parseInt(curr.getAttribute("velX")));
+		    curr.setAttribute("cy",cy+=parseInt(curr.getAttribute("velY")));
 		};//forloop
 		rid=window.requestAnimationFrame(moveAll);
 	};
