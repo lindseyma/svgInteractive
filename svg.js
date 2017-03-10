@@ -47,6 +47,12 @@ var draw2 = function(x,y) {
     svg.appendChild(c);
 }
 
+function check(circle) {
+    if (circle.getAttribute("cx") == svg.getAttribute("width")/2) {
+	return true;
+    }
+    return false;
+}
 
 //reminderthis is wrong;clear circles 
 var move = document.getElementById("move");
@@ -77,7 +83,10 @@ move.addEventListener('click', function(){
 			//curr.setAttribute("velY", parseInt(curr.getAttribute("velY"))*-1);
 			curr.setAttribute("velY", velY*-1);
 		    };
-		    console.log(velX);	 
+		    if (check(curr)) {
+			draw3(curr);
+		    }
+		    //console.log(velX);	 
 		    curr.setAttribute("cx",cx+=parseInt(curr.getAttribute("velX")));
 		    curr.setAttribute("cy",cy+=parseInt(curr.getAttribute("velY")));
 		};//forloop
