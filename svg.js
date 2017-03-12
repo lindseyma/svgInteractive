@@ -48,10 +48,11 @@ var draw2 = function(x,y) {
 }
 
 var draw3= function(oldC){
-console.log("check2");
+//console.log("check2");
 oldC.setAttribute("r",parseInt(oldC.getAttribute("r"))/2);
 //find new vel values from oldC
 velX=parseInt(oldC.getAttribute("velX"))*-1;
+console.log(velX);
 velY=parseInt(oldC.getAttribute("velY"))*-1;
 //change size original circle
 //new circle same size as new orig circle size
